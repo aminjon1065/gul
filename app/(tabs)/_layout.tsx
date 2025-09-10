@@ -7,7 +7,7 @@ import {IconSymbol} from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import {Colors} from '@/constants/Colors';
 import {useColorScheme} from '@/hooks/useColorScheme';
-
+import HomeScreen from "@/app/(tabs)/index";
 export default function TabLayout() {
     const colorScheme = useColorScheme();
 
@@ -29,7 +29,7 @@ export default function TabLayout() {
                 }),
             }}>
             <Tabs.Screen
-                name="index"
+                name="(home)"
                 options={{
                     title: 'Home',
                     tabBarIcon: ({color}) => <IconSymbol size={30} name="house.fill" color={color}/>,
@@ -39,7 +39,7 @@ export default function TabLayout() {
                 name="sos"
                 options={{
                     title: '',
-                    tabBarIcon: ({color}) => <IconSymbol size={30} name="sos.circle" color={color}/>,
+                    tabBarIcon: ({color}) => <IconSymbol size={30} name="sos" color={color}/>,
                 }}
             />
             <Tabs.Screen
@@ -47,6 +47,13 @@ export default function TabLayout() {
                 options={{
                     title: 'Explore',
                     tabBarIcon: ({color}) => <IconSymbol size={30} name="paperplane.fill" color={color}/>,
+                }}
+            />
+            <Tabs.Screen
+                name="auth/sign-in"
+                options={{
+                    title: 'SignIn',
+                    tabBarIcon: ({color}) => <IconSymbol size={30} name="house.fill" color={color}/>,
                 }}
             />
         </Tabs>
