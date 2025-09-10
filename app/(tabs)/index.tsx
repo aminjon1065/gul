@@ -1,80 +1,34 @@
-import {Image} from 'expo-image';
-import {Button, Linking, Platform, StyleSheet, Text} from 'react-native';
-
+import {Appearance, Button, Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {HelloWave} from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import {ThemedText} from '@/components/ThemedText';
 import {ThemedView} from '@/components/ThemedView';
 import {Link} from "expo-router";
+import {useColorScheme} from "@/hooks/useColorScheme";
+import {useEffect, useState} from "react";
+import setColorScheme = Appearance.setColorScheme;
 
 export default function HomeScreen() {
+    const color = useColorScheme();
+    console.log(color);
     return (
-        <ParallaxScrollView
-            headerBackgroundColor={{light: '#A1CEDC', dark: '#1D3D47'}}
-            headerImage={
-                <Image
-                    source={require('@/assets/images/partial-react-logo.png')}
-                    style={styles.reactLogo}
-                />
-            }>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type="title">Welcome!</ThemedText>
-                <HelloWave/>
-                <Text className={"font-bold text-4xl text-yellow-500"}>
-                    Lorem ipsum.
-                </Text>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type="defaultSemiBold">
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <Link href={'/explore'} className={"text-green-500 text-4xl font-bold"}>Explore</Link>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-                    <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-        </ParallaxScrollView>
+        <View className={"flex-1 dark:bg-slate-500 bg-red-200"}>
+            <ScrollView>
+                <View>
+                    <Text>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab blanditiis cupiditate eaque eius
+                        inventore labore maiores nihil pariatur quisquam saepe? Facere iusto molestiae nihil non nulla
+                        tempora vitae. Animi deleniti deserunt, eum ex hic ipsam nisi officiis quidem! Accusamus,
+                        aperiam, asperiores atque cum deleniti enim et ex explicabo fuga labore modi, nemo quae sequi
+                        unde voluptatibus? Eos fugit id, labore libero nulla quibusdam sapiente vel. Asperiores cumque
+                        modi perspiciatis quaerat sed? Accusantium ad amet architecto aspernatur blanditiis, cumque
+                        delectus dignissimos, et eveniet excepturi explicabo harum, ipsum iusto nemo nobis officia
+                        pariatur praesentium quisquam quod tempore tenetur ullam voluptas voluptates voluptatibus.
+                    </Text>
+                    <Button title={'SetColor'} onPress={() => setColorScheme(color === 'light' ? 'dark' : 'light')}/>
+
+                </View>
+            </ScrollView>
+        </View>
     );
 }
 
-const styles = StyleSheet.create({
-    titleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-    },
-    stepContainer: {
-        gap: 8,
-        marginBottom: 8,
-    },
-    reactLogo: {
-        height: 178,
-        width: 290,
-        bottom: 0,
-        left: 0,
-        position: 'absolute',
-    },
-});
